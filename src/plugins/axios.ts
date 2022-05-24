@@ -14,7 +14,6 @@ function delay(ms: number) {
 }
 
 export async function getAccessToken() {
-  console.log('axios:::::', axios.defaults.baseURL);
   let token = cookie.get('access_token');
   let tryCnt = 0;
 
@@ -30,4 +29,5 @@ export async function getAccessToken() {
   }
   // TODO 그냥 axios 랑 react-axios 랑 다른가??
   axios.defaults.headers.Authorization = `Bearer ${token}`;
+  return token;
 }
