@@ -6,6 +6,7 @@ import { QueryClientProvider } from 'react-query';
 import LoginPage from './components/Login';
 import { accessToken } from './plugins/axios';
 import Dashboard from './components/Dashboard';
+import Toast from './components/ui/toast';
 
 function App() {
   const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         {!hasAccessToken ? <LoginPage /> : <Dashboard />}
+        <Toast />
       </QueryClientProvider>
     </div>
   );
