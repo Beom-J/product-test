@@ -1,14 +1,26 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import './App.css';
-import Sample from './components/Sample';
+import queryClient from './plugins/queryClient';
 
-const queryClient = new QueryClient();
+import { useEffect, useState } from 'react';
+import { QueryClientProvider } from 'react-query';
+
+import LoginPage from './components/Login';
+import { accessToken } from './plugins/axios';
+import Dashboard from './components/Dashboard';
 
 function App() {
+  const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
+
+  useEffect(() => {
+    // 앱 로딩 시 토큰 저장되어있는지 확인
+    if (accessToken !== undefined) {
+      setHasAccessToken(true);
+    }
+  }, []);
+
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <Sample />
+        {!hasAccessToken ? <LoginPage /> : <Dashboard />}
       </QueryClientProvider>
     </div>
   );
