@@ -3,7 +3,7 @@ import queryClient from './plugins/queryClient';
 import { useEffect, useState } from 'react';
 import { QueryClientProvider } from 'react-query';
 
-import LoginPage from './components/Login';
+import LoginPage from './pages/Login';
 import { accessToken } from './plugins/axios';
 import Dashboard from './components/Dashboard';
 import Toast from './components/ui/toast';
