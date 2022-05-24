@@ -11,7 +11,7 @@ function useOAuthToken() {
       };
       const params = { email, password };
 
-      const { data } = await axios.post(`api/login`, params, config);
+      const { data } = await axios.post(`/login`, params, config);
 
       return data;
     }
