@@ -3,9 +3,9 @@ import queryClient from './plugins/queryClient';
 import { useEffect, useState } from 'react';
 import { QueryClientProvider } from 'react-query';
 
-import LoginPage from './pages/Login';
+import LoginPage from './pages/login';
 import { accessToken } from './plugins/axios';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/dashboard';
 import Toast from './components/ui/toast';
 
 function App() {
