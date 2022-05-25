@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import cookie from 'js-cookie';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,15 +13,13 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import { Auth } from '../../models';
-import axios from 'axios';
-import cookie from 'js-cookie';
-import toast from 'react-hot-toast';
 
 function Copyright(props: any) {
   return (
@@ -40,6 +43,7 @@ const theme = createTheme();
 
 export default function LoginPage() {
   const useOAuthToken = Auth.Mutation.useOAuthToken();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -56,6 +60,7 @@ export default function LoginPage() {
 
       cookie.set('access_token', data.access_token);
       toast.success('토큰 저장 성공');
+      navigate('/dashboard');
     } catch (error) {
       console.log(error);
       toast.error('토큰 저장 실패');
