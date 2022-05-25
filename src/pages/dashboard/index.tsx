@@ -1,6 +1,7 @@
 import * as React from 'react';
 import cookie from 'js-cookie';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -17,12 +18,14 @@ import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
+import { accessToken } from '../../plugins/axios';
 import { mainListItems, secondaryListItems } from './components/menu';
 import Deposits from './components/deposits';
 import Orders from './components/orders';
 import { AppBar, Drawer } from './styler';
 
-function DashboardContent() {
+function Dashboard() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -30,7 +33,9 @@ function DashboardContent() {
 
   const handleLogout = () => {
     cookie.remove('access_token');
+    //TODO logout query 추가
     toast('로그아웃 되었습니다.');
+    navigate('/');
   };
 
   return (
@@ -63,9 +68,11 @@ function DashboardContent() {
           >
             Dashboard
           </Typography>
-          <Button color="inherit" size="small" onClick={handleLogout}>
-            log out
-          </Button>
+          {accessToken && (
+            <Button color="inherit" size="small" onClick={handleLogout}>
+              log out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -129,6 +136,4 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default Dashboard;
