@@ -1,30 +1,17 @@
-import queryClient from './plugins/queryClient';
-
-import { useEffect, useState } from 'react';
 import { QueryClientProvider } from 'react-query';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import LoginPage from './pages/login';
-import { accessToken } from './plugins/axios';
-import Dashboard from './pages/dashboard';
+import queryClient from './plugins/queryClient';
 import Toast from './components/ui/toast';
 
+import Router from './route';
+
 function App() {
-  const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
-
-  useEffect(() => {
-    // 앱 로딩 시 토큰 저장되어있는지 확인
-    if (accessToken !== undefined) {
-      setHasAccessToken(true);
-    }
-  }, []);
-
   return (
-    <div className="App">
-      <QueryClientProvider client={queryClient}>
-        {!hasAccessToken ? <LoginPage /> : <Dashboard />}
-        <Toast />
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toast />
+    </QueryClientProvider>
   );
 }
 
