@@ -9,20 +9,18 @@ axios.defaults.headers.Authorization = `Bearer ${tokenFromCookie}`;
 
 export const accessToken = tokenFromCookie;
 
-function delay(ms: number) {
+export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function getAccessToken() {
+export function getAccessToken() {
   let token = cookie.get('access_token');
   let tryCnt = 0;
 
   while (token === undefined) {
-    await delay(100);
     token = cookie.get('access_token');
     tryCnt += 1;
 
-    // 2초 이상 획득 실채 시 에러
     if (tryCnt > 20) {
       return undefined;
     }
