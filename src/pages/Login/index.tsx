@@ -45,26 +45,32 @@ export default function LoginPage() {
   const useOAuthToken = Auth.Mutation.useOAuthToken();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email') as string;
     const password = data.get('password') as string;
 
-    try {
-      const data = await useOAuthToken.mutateAsync({
+    useOAuthToken.mutate(
+      {
         email,
         password
-      });
-      axios.defaults.headers.Authorization = `Bearer ${data.access_token}`;
+      },
+      {
+        onSuccess: (data) => {
+          console.log('data:::', data);
+          axios.defaults.headers.Authorization = `Bearer ${data.access_token}`;
 
-      cookie.set('access_token', data.access_token);
-      toast.success('토큰 저장 성공');
-      navigate('/dashboard');
-    } catch (error) {
-      console.log(error);
-      toast.error('토큰 저장 실패');
-    }
+          cookie.set('access_token', data.access_token);
+          toast.success('토큰 저장 성공');
+          navigate('/dashboard');
+        },
+        onError: (error) => {
+          console.log(error);
+          toast.error('토큰 저장 실패');
+        }
+      }
+    );
   };
 
   return (
