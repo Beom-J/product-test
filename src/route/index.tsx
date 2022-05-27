@@ -6,6 +6,7 @@ import Home from '../pages/home';
 
 import LoginPage from '../pages/login';
 import Product from '../pages/product';
+import NewForm from '../pages/product/component/new';
 import PrivateRoute from './privateRoute';
 
 const Router = () => {
@@ -29,6 +30,10 @@ const Router = () => {
           <Route
             path="/product"
             element={<DashboardLayout children={<Product />} />}
+          />
+          <Route
+            path="/product/add"
+            element={<DashboardLayout children={<NewForm />} />}
           />
         </Route>
       </Routes>
