@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 
@@ -23,7 +23,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { MainListItems, secondaryListItems } from './components/menu';
 import { AppBar, Drawer } from './styler';
 
-const DashboardLayout = ({ children }: { children: JSX.Element }) => {
+const DashboardLayout = () => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(true);
@@ -109,7 +109,7 @@ const DashboardLayout = ({ children }: { children: JSX.Element }) => {
       >
         <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          {children}
+          <Outlet />
         </Container>
       </Box>
     </Box>
