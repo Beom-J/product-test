@@ -1,8 +1,13 @@
 export type Product = {
-  id: number;
   name: string;
   sku: string;
   upc: string;
+};
+
+export type ProductTable = Product & BasicColumn;
+
+export type BasicColumn = {
+  id: number;
   created_at: string;
   updated_at: string;
 };
