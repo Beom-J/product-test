@@ -13,3 +13,4 @@ export type BasicColumn = {
 };
 
 export const KEY_PRODUCT_LIST = 'product_list';
+export const KEY_PRODUCT = 'product';
