@@ -6,7 +6,7 @@ import Home from '../pages/home';
 
 import LoginPage from '../pages/login';
 import ProductHeader from '../pages/product';
-import NewForm from '../pages/product/component/new';
+import Form from '../pages/product/component/form';
 import ProductTable from '../pages/product/component/table';
 import PrivateRoute from './privateRoute';
 
@@ -29,7 +29,8 @@ const Router = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/product" element={<ProductHeader />}>
               <Route index element={<ProductTable />} />
-              <Route path="add" element={<NewForm />} />
+              <Route path="add" element={<Form />} />
+              <Route path="edit" element={<Form />} />
             </Route>
           </Route>
         </Route>

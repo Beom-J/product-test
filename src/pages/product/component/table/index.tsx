@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   Box,
@@ -9,8 +10,10 @@ import {
   TableRow,
   TableCell,
   Checkbox,
-  TablePagination
+  TablePagination,
+  IconButton
 } from '@mui/material';
+import { DeleteRounded, EditRounded } from '@mui/icons-material';
 
 import TableHeadWithSorting, {
   Order,
@@ -22,6 +25,9 @@ import { getComparator } from '../../../../utils/getComparator';
 import { Styler } from './styler';
 
 const ProductTable = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof ProductColumn>('name');
   const [selected, setSelected] = useState<readonly string[]>([]);
@@ -62,6 +68,7 @@ const ProductTable = () => {
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+    event.preventDefault();
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -151,7 +158,42 @@ const ProductTable = () => {
                           <TableCell align="left">{row.sku}</TableCell>
                           <TableCell align="left">{row.upc}</TableCell>
                           <TableCell align="left">{row.created_at}</TableCell>
-                          <TableCell align="left">{row.updated_at}</TableCell>
+                          <TableCell align="left">
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                              }}
+                            >
+                              {row.updated_at}
+
+                              {/* 클릭 시 수정 & 삭제 버튼 노출 */}
+                              {isItemSelected && (
+                                <Box>
+                                  <IconButton
+                                    color="primary"
+                                    LinkComponent="span"
+                                    size="small"
+                                    onClick={() =>
+                                      navigate(
+                                        `${location.pathname}/edit?product_id=${row.id}`
+                                      )
+                                    }
+                                  >
+                                    <EditRounded fontSize="inherit" />
+                                  </IconButton>
+                                  <IconButton
+                                    color="primary"
+                                    LinkComponent="span"
+                                    size="small"
+                                  >
+                                    <DeleteRounded fontSize="inherit" />
+                                  </IconButton>
+                                </Box>
+                              )}
+                            </Box>
+                          </TableCell>
                         </TableRow>
                       );
                     })}
