@@ -1,6 +1,14 @@
 import { QueryClient } from 'react-query';
 
-//TODO quertClient 옵션 설정 알아보기
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      suspense: true,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 export default queryClient;
