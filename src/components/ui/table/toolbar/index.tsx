@@ -6,9 +6,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   numSelected: number;
+  onDelete: () => void;
 };
 
-const TableToolBarWithFilter = ({ numSelected }: Props) => {
+const TableToolBarWithFilter = ({ numSelected, onDelete }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   return (
@@ -46,7 +47,7 @@ const TableToolBarWithFilter = ({ numSelected }: Props) => {
       )}
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
