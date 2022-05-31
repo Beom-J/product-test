@@ -21,3 +21,10 @@ export const useUpdateProduct = () => {
     }
   );
 };
+
+export const useDeleteProduct = () => {
+  return useMutation(async (id: number) => {
+    const url = `/product/${id}`;
+    await axios.delete(url);
+  });
+};
