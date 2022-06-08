@@ -7,6 +7,7 @@ import queryClient from './plugins/queryClient';
 import Toast from './components/ui/toast';
 
 import Router from './route';
+import { LoadingCircle } from './components/loading-boundary';
 
 const theme = createTheme({
   typography: {
@@ -19,7 +20,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
-          <Suspense fallback={<div>Loading....</div>}>
+          <Suspense fallback={<LoadingCircle />}>
             <Router />
             <Toast />
           </Suspense>
