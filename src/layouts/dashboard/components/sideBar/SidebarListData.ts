@@ -10,9 +10,7 @@ export interface SidebarListType {
   title: string;
   path: string;
   icon: keyof typeof SidebarIcons;
-  iconClosed?: string;
-  iconOpened?: string;
-  subNav?: SubNavType[];
+  subNav: SubNavType[];
 }
 
 interface SubNavType {
@@ -26,7 +24,8 @@ export const SidebarListData: SidebarListType[] = [
   {
     title: 'Dashboard',
     path: '/dashboard',
-    icon: 'DashboardIcon'
+    icon: 'DashboardIcon',
+    subNav: []
   },
   {
     title: 'Product',
@@ -34,13 +33,13 @@ export const SidebarListData: SidebarListType[] = [
     icon: 'DashboardIcon',
     subNav: [
       {
-        title: 'sub1',
-        path: '/product/sub1',
+        title: 'add',
+        path: '/product/add',
         icon: 'PeopleIcon'
       },
       {
-        title: 'sub2',
-        path: '/product/sub2',
+        title: 'edit',
+        path: '/product/edit',
         icon: 'PeopleIcon'
       }
     ]
