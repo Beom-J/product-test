@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { SidebarIcons, SidebarListType } from '../sideBar/SidebarListData';
@@ -44,8 +44,14 @@ const DropdownLink = styled(Link)`
 const SubMenu = ({ title, path, subNav, icon }: SidebarListType) => {
   const Icon = SidebarIcons[icon];
   const [openSubNav, setOpenSubnav] = useState(false);
+  const [MoreIcon, setMoreIcon] = useState(<ExpandMoreRounded />);
 
   const showSubnav = () => setOpenSubnav(!openSubNav);
+  const hasSubnav = !!subNav.length;
+
+  useEffect(() => {
+    setMoreIcon(openSubNav ? <ExpandLessRounded /> : <ExpandMoreRounded />);
+  }, [openSubNav]);
 
   return (
     <>
@@ -54,13 +60,7 @@ const SubMenu = ({ title, path, subNav, icon }: SidebarListType) => {
           <Icon />
           <SidebarLabel>{title}</SidebarLabel>
         </>
-        <>
-          {subNav && openSubNav ? (
-            <ExpandLessRounded />
-          ) : subNav ? (
-            <ExpandMoreRounded />
-          ) : null}
-        </>
+        {hasSubnav && MoreIcon}
       </SidebarLink>
       {openSubNav &&
         subNav?.map((item, index) => {
