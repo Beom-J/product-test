@@ -1,28 +1,27 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import styled from '@emotion/styled';
+import { useMediaQuery } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
 import AppHeader from './components/header';
 import SideBar from './components/sideBar';
-import styled from '@emotion/styled';
-import { useMediaQuery } from '@mui/material';
+import SideBarDrawer from './components/sideBarDrawer';
 
 const Styler = styled.div`
   display: flex;
 `;
 
 const DashboardLayout = () => {
-  const navigate = useNavigate();
-
+  // width 600px 이하일때 사이드바 감추기
   const isMideaUp = useMediaQuery('(min-width:600px)');
 
   return (
     <Styler>
-      {/* {isMideaUp && <SideBar />} */}
-      <SideBar />
+      {isMideaUp && <SideBar />}
+      {!isMideaUp && <SideBarDrawer />}
       <AppHeader />
-      <div style={{ background: 'blue' }}>content</div>
+      <div style={{ background: 'blue' }}>
+        <Outlet />
+      </div>
     </Styler>
   );
 };
