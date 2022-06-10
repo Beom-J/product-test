@@ -27,15 +27,6 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
-const NavIcon = styled(Link)`
-  margin-left: 2rem;
-  font-size: 2rem;
-  height: 80px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
 const SideBar = () => {
   const [open, setOpen] = useState(true);
 
@@ -46,14 +37,12 @@ const SideBar = () => {
   return (
     <SidebarNav open={open}>
       <SidebarWrap>
-        <NavIcon to="#">
-          <NavCloseIcon onClick={handleClick} />
-        </NavIcon>
         {SidebarListData.map((item, index) => (
           <SubMenu {...item} key={`item-${index}`} />
         ))}
       </SidebarWrap>
     </SidebarNav>
+    // TODO sidebar 접었다 펼쳤다 할 수 잇는 아이콘 & 메뉴 표현방식 고민...
   );
 };
 

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 import AppHeader from './components/header';
@@ -18,10 +18,12 @@ const DashboardLayout = () => {
     <Styler>
       {isMideaUp && <SideBar />}
       {!isMideaUp && <SideBarDrawer />}
-      <AppHeader />
-      <div style={{ background: 'blue' }}>
-        <Outlet />
-      </div>
+      <Box sx={{ width: '100%' }}>
+        <AppHeader />
+        <div style={{ background: 'blue' }}>
+          <Outlet />
+        </div>
+      </Box>
     </Styler>
   );
 };
