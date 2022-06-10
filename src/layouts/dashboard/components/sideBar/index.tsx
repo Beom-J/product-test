@@ -17,7 +17,7 @@ const SidebarNav = styled.nav<Props>`
   height: 100vh;
   display: flex;
   justify-content: center;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: ${({ open }) => (open ? '0' : '-100%')};
   transition: 350ms;
