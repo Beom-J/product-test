@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 
 import AppHeader from './components/header';
 import SideBar from './components/sideBar';
-import SideBarDrawer from './components/sideBarDrawer';
 
 const Styler = styled.div`
   display: flex;
@@ -17,12 +16,11 @@ const DashboardLayout = () => {
   return (
     <Styler>
       {isMideaUp && <SideBar />}
-      {!isMideaUp && <SideBarDrawer />}
-      <Box sx={{ width: '100%' }}>
-        <AppHeader />
-        <div style={{ background: 'blue' }}>
+      <Box sx={{ width: '100%', height: '100vh', background: '#eff5f8' }}>
+        <AppHeader isMideaUp={isMideaUp} />
+        <Box>
           <Outlet />
-        </div>
+        </Box>
       </Box>
     </Styler>
   );

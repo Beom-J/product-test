@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Avatar, Button, Fade, Menu, MenuItem } from '@mui/material';
+import { Avatar, Box, Button, Fade, Menu, MenuItem } from '@mui/material';
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   return (
-    <>
+    <Box>
       <Button
         onClick={(e) => setAnchorEl(e.currentTarget)}
         startIcon={<Avatar />}
@@ -23,7 +23,7 @@ const UserMenu = () => {
         <MenuItem>정보 설정</MenuItem>
         <MenuItem>로그아웃</MenuItem>
       </Menu>
-    </>
+    </Box>
   );
 };
 

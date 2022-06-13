@@ -1,9 +1,21 @@
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
+import SideBarDrawer from '../sideBarDrawer';
 import UserMenu from '../userMenu';
 
-const AppHeader = () => {
+interface Props {
+  isMideaUp: boolean;
+}
+
+const AppHeader = ({ isMideaUp }: Props) => {
   return (
-    <Box sx={{ textAlign: 'end', m: 2 }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: isMideaUp ? 'flex-end' : 'space-between',
+        m: 2
+      }}
+    >
+      {!isMideaUp && <SideBarDrawer />}
       <UserMenu />
     </Box>
   );

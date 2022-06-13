@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
-import { Button, Drawer } from '@mui/material';
+import { Box, Button, Drawer } from '@mui/material';
 import SideBar from '../sideBar';
 
 const SideBarDrawer = () => {
   const [openSideBar, setOpenSideBar] = useState(false);
 
   return (
-    <div>
+    <Box>
       <Button variant="outlined" onClick={() => setOpenSideBar(!openSideBar)}>
         <MenuRoundedIcon />
       </Button>
@@ -20,7 +20,7 @@ const SideBarDrawer = () => {
       >
         <SideBar />
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
